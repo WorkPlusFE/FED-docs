@@ -1,0 +1,21 @@
+{
+  "name": "fed-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": "https://github.com/WorkPlusFE/FED-docs.git",
+  "author": "hejianxian <531601727@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.7.1",
+    "@vuepress/plugin-last-updated": "^1.7.1",
+    "@vuepress/plugin-medium-zoom": "^1.7.1",
+    "babel-runtime": "^6.26.0",
+    "moment": "^2.29.1",
+    "vuepress": "^1.7.1",
+    "vuepress-theme-default-prefers-color-scheme": "^2.0.0"
+  }
+}
