@@ -8,12 +8,6 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage("Git Checkout") {
-            steps {
-                checkout scm
-            }
-        }
-
         stage("Bootstrap && Build") {
             agent {
                 docker {
@@ -29,8 +23,11 @@ pipeline {
         }
 
         stage("Deploy") {
+            node {
+                echo 'Pulling...' + version
+            }
             when {
-                branch 'origin/main'
+                branch 'main'
             }
             steps {
                 sh 'rsync --delete -avz -e ssh ${WORKSPACE}@2/docs/.vuepress/dist/* root@106.13.212.147:/data/workplus/websites/open.workplus.io/dev/'
