@@ -23,9 +23,6 @@ pipeline {
         }
 
         stage("Deploy") {
-            node {
-                echo 'Pulling...' + version
-            }
             when {
                 branch 'main'
             }
