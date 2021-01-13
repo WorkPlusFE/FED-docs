@@ -13,6 +13,7 @@ pipeline {
                 docker {
                     image 'node:10.23.0-alpine3.10' 
                     args '-e HOME=/tmp -e NPM_CONFIG_PREFIX=/tmp/.npm'
+                    reuseNode true
                 }
             }
             steps {
@@ -24,7 +25,7 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                sh 'rsync --delete -avz -e ssh ${WORKSPACE}@2/docs/.vuepress/dist/* root@106.13.212.147:/data/workplus/websites/open.workplus.io/dev/'
+                sh 'rsync --delete -avz -e ssh ${WORKSPACE}/docs/.vuepress/dist/* root@106.13.212.147:/data/workplus/websites/open.workplus.io/dev/'
             }
         }
     }
