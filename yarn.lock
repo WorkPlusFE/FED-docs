@@ -1117,7 +1117,7 @@
   dependencies:
     lodash.debounce "^4.0.8"
 
-"@vuepress/plugin-last-updated@1.8.0", "@vuepress/plugin-last-updated@^1.7.1":
+"@vuepress/plugin-last-updated@1.8.0", "@vuepress/plugin-last-updated@^1.8.0":
   version "1.8.0"
   resolved "https://registry.npm.taobao.org/@vuepress/plugin-last-updated/download/@vuepress/plugin-last-updated-1.8.0.tgz#a0fcd2906a4dcae107634013f7c49ddd05e0de87"
   integrity sha1-oPzSkGpNyuEHY0AT98Sd3QXg3oc=

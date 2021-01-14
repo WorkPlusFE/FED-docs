@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.7.1",
-    "@vuepress/plugin-last-updated": "^1.7.1",
+    "@vuepress/plugin-last-updated": "^1.8.0",
     "@vuepress/plugin-medium-zoom": "^1.7.1",
     "babel-runtime": "^6.26.0",
     "moment": "^2.29.1",
