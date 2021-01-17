@@ -24,9 +24,8 @@ module.exports = {
   themeConfig: {
     overrideTheme: { light: [6, 18], dark: [18, 6] },
     logo: '/logo.png',
-    displayAllHeaders: true,
     nav: [
-      { text: '项目创建', link: '/' },
+      { text: '快速开始', link: '/start/' },
       { text: 'DevOps', link: '/DevOps/' },
       { text: '工具/库', link: '/packages' },
       { text: '文章', link: '/post/' },
@@ -41,11 +40,32 @@ module.exports = {
       },
     ],
     sidebar: {
+      '/start/': [
+        {
+          title: '项目创建',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            '',
+            'structure',
+            'plugin'
+          ]
+        }, {
+          title: '项目规范',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            'code-guide',
+            'branch-guide',
+            'git-guide',
+          ]
+        }
+      ],
       '/DevOps/': [
         {
           title: '开发与发布',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 1,
           children: [
             '',
             'deploy',
@@ -53,14 +73,14 @@ module.exports = {
         }, {
           title: '日志埋点',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 1,
           children: [
             'sentry',
           ]
         }, {
           title: '持续集成',
           collapsable: false,
-          sidebarDepth: 2,
+          sidebarDepth: 1,
           children: [
             'jenkins',
           ]
