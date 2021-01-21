@@ -58,6 +58,7 @@ module.exports = {
             'code-guide',
             'branch-guide',
             'git-guide',
+            'multiple-remote',
           ]
         }
       ],
