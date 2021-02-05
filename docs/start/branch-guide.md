@@ -94,3 +94,8 @@ Saved working directory and index state WIP on dev: f86ae33 add merge
 
 1. 用`git stash apply`恢复，但是恢复后，stash 内容并不会删除，你需要用`git stash drop`来删除；
 2. 用`git stash pop`，恢复的同时把 stash 内容也删除。
+
+## 在线教程
+
+* [廖雪峰 | Git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
+* [Git 命令学习](https://oschina.gitee.io/learn-git-branching/)
