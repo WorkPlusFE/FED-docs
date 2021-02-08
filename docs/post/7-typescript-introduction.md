@@ -1,8 +1,8 @@
-## 介绍
+# 走进 TypeScript
 
 > [何镇豪](https://github.com/ElvisUpUp) / 2021-2-8
 
-`Typescript` 是 `Javascript` 的强类型版本，然后它会在编译器把类型、特有语法等等编译成 `Javascript` 。由于最终运行的是 `Javascript` ，所以 `Typescript` 并不会依赖于浏览器的支持，也不会带来兼容性的问题。
+`TypeScript` 是 `JavaScript` 的强类型版本，然后它会在编译器把类型、特有语法等等编译成 `JavaScript` 。由于最终运行的是 `JavaScript` ，所以 `TypeScript` 并不会依赖于浏览器的支持，也不会带来兼容性的问题。
 
 ## 类型系统的好处
 
@@ -12,7 +12,7 @@
 
 **2. IDE 智能提示**
 
-在没有使用 TypeScript , JavaScript 的智能提示基本完全依赖 IDE 提供的猜测。局限性就是，这种猜测可能并不正确，并且也缺乏更多的辅助信息，所以要正确使用一个类库，得不断地在文档和 IDE 之间切换，影响效率。而 TypeScript 不仅自己写的 Javascript 有丰富的类型信息，也可以对其他纯 JS 项目进行类型标注 ([DefinitelyTyped](https://link.zhihu.com/?target=https%3A//github.com/borisyankov/DefinitelyTyped)), 便于使用者直接在 IDE 中浏览 API，效率大增。
+在没有使用 TypeScript , JavaScript 的智能提示基本完全依赖 IDE 提供的猜测。局限性就是，这种猜测可能并不正确，并且也缺乏更多的辅助信息，所以要正确使用一个类库，得不断地在文档和 IDE 之间切换，影响效率。而 TypeScript 不仅自己写的 JavaScript 有丰富的类型信息，也可以对其他纯 JS 项目进行类型标注 ([DefinitelyTyped](https://link.zhihu.com/?target=https%3A//github.com/borisyankov/DefinitelyTyped)), 便于使用者直接在 IDE 中浏览 API，效率大增。
 
 **3. 可读性**
 
@@ -32,7 +32,7 @@ TS 的编译流程包含三步：**解析**->**转换**->**生成**
 
 
 
-<img :src="$withBase('/ts-compile.jpg')" alt="typescript">
+<img :src="$withBase('/ts-compile.jpg')" alt="TypeScript">
 
 **例子：transformer plugin**
 
@@ -50,22 +50,22 @@ import Button from 'antd/lib/button'
 
 在一个没有使用全部组件的项目里，这样做可以明显减少打包后的代码体积。
 
-下面是一个简单的transformer plugin例子：
+下面是一个简单的 transformer plugin 例子：
 
 通过 [AST explorer](https://link.zhihu.com/?target=http%3A//astexplorer.net/) 可以发现，需要完成上面的转换，只需要进行两处转换，即替换 ImportClause 的子节点和替换 StringLiteral 为原来的值加上上面的 Identifier。
 
 **转换前：**
 
-<img :src="$withBase('/ast-before.jpg')" alt="typescript">
+<img :src="$withBase('/ast-before.png')" alt="TypeScript">
 
 **转换后：**
 
-<img :src="$withBase('/ast-after.jpg')" alt="typescript">
+<img :src="$withBase('/ast-after.png')" alt="TypeScript">
 
 **代码：**
 
-```typescript
-import * as ts from 'typescript'
+```TypeScript
+import * as ts from 'TypeScript'
 import * as kind from 'ts-is-kind'
 
 function transformer(ctx: ts.TransformationContext): ts.Transformer<ts.SourceFile> {
@@ -143,14 +143,14 @@ console.log(compile('import { Button } from "antd"'))
 
 - **结构类型**
 
-  Typescript的类型系统是基于结构子类型的，这种类型系统是一种只使用成员来描述类型的方式。它与名义类型正好相反，名义类型是通过明确的声明或类型的名称来决定的。
+  TypeScript 的类型系统是基于结构子类型的，这种类型系统是一种只使用成员来描述类型的方式。它与名义类型正好相反，名义类型是通过明确的声明或类型的名称来决定的。
 
 - **泛型**
 
   - 目的是为了创建可复用的组件，使其可以支持多数据类型。
   - 本质就是给类型传参
 
-  ``````typescript
+  ``````TypeScript
   interface Generic<T> {
     (x: T, y: T): T;
   }
@@ -164,9 +164,9 @@ console.log(compile('import { Button } from "antd"'))
 
   当我们使用 `Generic<number>` 时，`<number>` 就像是参数1和12一样，方法内的类型也同样可以使用这个类型参数。
 
-  - 可以用extends来对泛型约束
+  - 可以用 extends 来对泛型约束
 
-    ```typescript
+    ```TypeScript
     // 泛型约束
     interface Length {
       length: number
@@ -215,9 +215,9 @@ console.log(compile('import { Button } from "antd"'))
 
 - **Never、void、any、unknown**
 
-  - Never是Typescript的一种`bottom type`，即是表示永不存在的值的类型。
+  - Never是TypeScript的一种`bottom type`，即是表示永不存在的值的类型。
 
-    ```typescript
+    ```TypeScript
     // 不相交类型的inteserction结果为never
     type IntersectionNeverType = 1 & 2
     // 是任何类型的subtype
@@ -228,11 +228,11 @@ console.log(compile('import { Button } from "antd"'))
     type result1 = string & never
     ```
 
-  - void当定义函数返回值类型时，表示不返回任何值；定义变量类型时，该变量只能赋值为undefined/null
+  - void 当定义函数返回值类型时，表示不返回任何值；定义变量类型时，该变量只能赋值为 undefined/null
 
-  - unknown表示未知类型，当无法立刻确定类型时，建议先使用unknown，到使用时再使用类型断言确定类型
+  - unknown 表示未知类型，当无法立刻确定类型时，建议先使用 unknown，到使用时再使用类型断言确定类型
 
-    ```typescript
+    ```TypeScript
     let a: any = 1
     const b: unknown = 2;
     
@@ -245,7 +245,7 @@ console.log(compile('import { Button } from "antd"'))
 
   ##### **keyof**
 
-  ```typescript
+  ```TypeScript
   interface Person {
     name: string;
     age: number;
@@ -263,9 +263,9 @@ console.log(compile('import { Button } from "antd"'))
 
   作用就是将某个类型里的属性全部变为可选项 `?`
 
-  ```typescript
+  ```TypeScript
   /**
-   * node_modules/typescript/lib/lib.es5.d.ts
+   * node_modules/TypeScript/lib/lib.es5.d.ts
    * Make all properties in T optional
    */
   type Partial<T> = {
@@ -369,15 +369,15 @@ console.log(compile('import { Button } from "antd"'))
 
   - **@Component**
 
-    大家其实都在vue2里面用过typescript，都知道通常都会使用vue-class-component来配合使用。
+    大家其实都在 vue2.0 里面用过 TypeScript，都知道通常都会使用 vue-class-component 来配合使用。
 
-    而@Component是最常用的装饰器，通过它的源码可以发现它的核心方法是 `componentFactory` 。
+    而`@Component`是最常用的装饰器，通过它的源码可以发现它的核心方法是`componentFactory`。
 
     它做了三件事：
 
-    - 生成options，通过一些判断来给options添加属性
+    - 生成 options，通过一些判断来给 options 添加属性
 
-      ```typescript
+      ```TypeScript
       const proto = Component.prototype
         Object.getOwnPropertyNames(proto).forEach(function (key) {
           if (key === 'constructor') {
@@ -395,7 +395,7 @@ console.log(compile('import { Button } from "antd"'))
             if (typeof descriptor.value === 'function') {
               (options.methods || (options.methods = {}))[key] = descriptor.value
             } else {
-              // typescript decorated data
+              // TypeScript decorated data
               (options.mixins || (options.mixins = [])).push({
                 data (this: Vue) {
                   return { [key]: descriptor.value }
@@ -414,7 +414,7 @@ console.log(compile('import { Button } from "antd"'))
 
     - 遍历component里的`__decorator__`属性，并执行它的factory方法
 
-      ```typescript
+      ```TypeScript
       // decorate options
         const decorators = (Component as DecoratedClass).__decorators__
         if (decorators) {
@@ -425,7 +425,7 @@ console.log(compile('import { Button } from "antd"'))
 
     - 调用`Vue.extend(options)`创建一个组件构造器并返回
 
-      ```typescript
+      ```TypeScript
       const superProto = Object.getPrototypeOf(Component.prototype)
       const Super = superProto instanceof Vue
       ? superProto.constructor as VueClass<Vue>
@@ -439,7 +439,7 @@ console.log(compile('import { Button } from "antd"'))
 
 1. **JSON to TS**
 
-   可以快速完成JSON数据到TS接口的转换工作。
+   可以快速完成 JSON 数据到 TS 接口的转换工作。
 
 2. **Document This**
 
@@ -447,8 +447,10 @@ console.log(compile('import { Button } from "antd"'))
 
 3. **Quokka.js**
 
-   Quokka可以在VS Code运行JS/TS代码，并显示结果。
+   Quokka 可以在 VS Code 运行 JS/TS 代码，并显示结果。
 
 #### 总结
 
-这篇文章只是简单梳理了Typescript的一些重要概念，对于某些概念，还需要自身去官方文档深入研究，以及在实际开发中运用来加深理解。个人觉得，无论大型还是小型项目，Typescript都是必要的。
+这篇文章只是简单梳理了 TypeScript 的一些重要概念，对于某些概念，还需要自身去官方文档深入研究，以及在实际开发中运用来加深理解。
+
+个人觉得，无论大型还是小型项目，TypeScript 都是必要的。
