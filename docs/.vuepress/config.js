@@ -70,6 +70,7 @@ module.exports = {
           children: [
             '',
             'deploy',
+            'output-config',
           ]
         }, {
           title: '日志埋点',

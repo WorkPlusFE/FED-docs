@@ -12,7 +12,7 @@
 
 核心技术栈：
 
-* vue@2.6.11
+* [vue@2.6.11](https://vuejs.org/)
 * vue-router@3.1.6
 * vuex@3.1.3"
 * vue-i18n@8.17.5
@@ -22,6 +22,24 @@
 * vue-property-decorator@8.4.1
 * vuex-module-decorators@0.17.0
 
+UI库：
+
+* `admin` [element-ui@2.9.2](https://element.eleme.cn/#/zh-CN)
+* `H5` [vant@2.8.1](https://youzan.github.io/vant-weapp/#/intro)
+
+样式：
+
+* [Sass@1.32.8](https://github.com/sass/dart-sass)
+
+::: tip 关于 Dart Sass
+从`w6s-cli@2.3.0`版本开始，`node-sass`被移除，转而使用性能更好、安装对环境依赖更少的`dart-sass`。
+
+相关知识点，请查看下方链接：
+
+* [Wht Dart?](https://sass-lang.com/blog/announcing-dart-sass#why-dart)
+* [Node Sass to Dart Sass](https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/sass.html#node-sass-to-dart-sass)
+:::
+
 其他：
 
 * core-js@3.6.5
@@ -30,12 +48,6 @@
   * integrations@5.15.5
 * @w6s
   * sdk
-
-UI库
-
-* `admin` element-ui@2.9.2
-* `H5` vant@2.8.1
-
 ## 目录说明
 
 以`H5`模版为例，当前项目文件结构如下：
