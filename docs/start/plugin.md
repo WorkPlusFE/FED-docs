@@ -94,7 +94,7 @@ module.exports = {
     outputConfigFile: {
       // 默认 config.json
       fileName: "serverConfig.json",
-      // 默认项目更目录下的 DEPLOY.md，相对项目根目录路径
+      // 默认项目根目录下的 DEPLOY.md，相对项目根目录路径
       descriptionFile: "docs/项目文档.xlsx",
     },
   },
