@@ -1,11 +1,3 @@
-<!--
- * @Description: 文件注释文档
- * @Author: hejianxian@foreverht.com
- * @LastEditor: hejianxian@foreverht.com
- * @Date: 2021-05-24 16:02:22
- * @LastEditTime: 2021-05-25 14:06:48
--->
-
 # 文件注释
 
 统一安装`VScode`的 [koroFileHeader](https://marketplace.visualstudio.com/items?itemName=OBKoro1.korofileheader)插件。
