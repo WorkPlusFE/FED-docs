@@ -59,6 +59,7 @@ module.exports = {
             'branch-guide',
             'git-guide',
             'multiple-remote',
+            'file-comment',
           ]
         }
       ],
