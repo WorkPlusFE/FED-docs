@@ -29,7 +29,8 @@
 ```json
 // 全局配置
 "fileheader.configObj": {
-  "createHeader": false // 取消自动创建头部注释
+  "createHeader": false, // 取消自动创建头部注释
+  "autoAdd": true // 取消文件没有头部时自动添加注释
 },
 
 // 头部
