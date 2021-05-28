@@ -6,13 +6,15 @@ const postPath = path.resolve(__dirname, '../post');
 function getPostFileList() {
   try {
     const files = fs.readdirSync(postPath, 'utf-8');
-    const getNumber = (name) => name.split('-').shift();
+    const getNumber = (name) => Number(name.split('-').shift());
     return files.filter(file => file !== 'README.md').sort((a, b) => getNumber(a) < getNumber(b));
   } catch (error) {
     console.log(error);
     return [];
   }
 }
+
+console.log('getPostFileList', getPostFileList());
 
 module.exports = {
   title: 'FED',
