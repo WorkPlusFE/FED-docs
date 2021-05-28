@@ -1,29 +1,24 @@
-# kbone 指南
+# kbone，让你的 H5 快速适配小程序
 
 > [岑成威](https://github.com/CENcw) / 2021-5-28
 
 ### Kbone 是什么?
 
-一个致力于微信小程序和 Web 端同构的解决方案。
+[Kbone](https://github.com/Tencent/kbone)是腾讯开源的一个前端工具库，致力于微信小程序和 Web 端同构的解决方案。
+
+> 微信小程序的底层模型和 Web 端不同，我们想直接把 Web 端的代码挪到小程序环境内执行是不可能的。kbone 的诞生就是为了解决这个问题，它实现了一个适配器，在适配层里模拟出了浏览器环境，让 Web 端的代码可以不做什么改动便可运行在小程序里。
 
 ### Kbone 和 taro，mpvue，wepy 等框架对比优势
 
-- 大部分流行的前端框架都能够在 kbone 上运行，比如 Vue、React、Preact 等
-- 支持更为完整的前端框架特性，因为 kbone 不会对框架底层进行删改（比如 Vue 中的 v-html 指令、Vue-router 插件）
-- 提供了常用的 dom/bom 接口，让用户代码无需做太大改动便可从 Web 端迁移到小程序端
-- 在小程序端运行时，仍然可以使用小程序本身的特性（比如像 live-player 内置组件、分包功能）
-- 提供了一些 Dom 扩展接口，让一些无法完美兼容到小程序端的接口也有替代使用方案（比如 getComputedStyle 接口）
-
-### 缺点
-
-- 缺少第三方插件，不支持 wxs
-- 社区不活跃，解决问题慢，维护，贡献者少
-- 性能差
-- [更多限制](https://wechat-miniprogram.github.io/kbone/docs/qa/#%E9%99%90%E5%88%B6)
+1. 大部分流行的前端框架都能够在 kbone 上运行，比如 Vue、React、Preact 等；
+2. 支持更为完整的前端框架特性，因为 kbone 不会对框架底层进行删改（比如 Vue 中的 v-html 指令、Vue-router 插件）；
+3. 提供了常用的 DOM/BOM 接口，让用户代码无需做太大改动便可从 Web 端迁移到小程序端；
+4. 在小程序端运行时，仍然可以使用小程序本身的特性（比如像 live-player 内置组件、分包功能）；
+5. 提供了一些 Dom 扩展接口，让一些无法完美兼容到小程序端的接口也有替代使用方案（比如 getComputedStyle 接口）。
 
 ### 原理分析
 
-#### web 端框架基本原理
+#### 一、web 端框架基本原理
 
 首先我们来看下普通 Web 端框架，以 Vue 框架为例，一份 Vue 模板对应一个组件，在代码构建阶段编译成调用 Dom 接口的 JS 函数，执行此 JS 函数就会创建出组件对应的 Dom 树，从而渲染到浏览器页面上。
 
@@ -31,14 +26,14 @@
   <img :src="$withBase('/minPrinciple.png')" alt="test">
 </p>
 
-#### 业界常规做法
+#### 二、业界常规做法
 
 <p>
   <img :src="$withBase('/kbone0.png')" alt="test">
 </p>
 原理是把代码语法分析一遍，然后将其中的模板部分翻译成对应的跨端需求的模板（微信小程序、支付宝小程序、H5、APP 等）
 
-#### Kbone 的做法
+#### 三、Kbone 的做法
 
 <p>
   <img :src="$withBase('/kbone.jpeg')" alt="test">
@@ -96,6 +91,9 @@ kbone 这里还对节点数进行了优化: 因为一次性 setData 到视图层
 </p>
 
 vue 转小程序的实际操作流程[点击这里](https://wechat-miniprogram.github.io/kbone/docs/guide/tutorial.html#%E7%BC%96%E5%86%99-webpack-%E9%85%8D%E7%BD%AE)
+
+
+### 结合 Vue 使用
 
 安装 mp-webpack-plugin 插件
 
@@ -294,3 +292,18 @@ module.exports = {
 # 打包
 "mp-build": "vue-cli-service build --mode mp"
 ```
+
+更多使用方法，请查看[Kbone](https://wechat-miniprogram.github.io/kbone/docs/)官网！
+
+### 当前不足
+
+- 缺少第三方插件，不支持 wxs
+- 社区不活跃，解决问题慢，维护，贡献者少
+- 性能待提高
+- [更多限制](https://wechat-miniprogram.github.io/kbone/docs/qa/#%E9%99%90%E5%88%B6)
+
+### 什么时候使用 Kbone
+
+业内其实已经出现了很多关于同构的解决方案了，每个方案都有自己的优劣，不存在能够完美解决所有问题的方案。kbone 也一样，它的优势在上面提到过，而它的不足也是它的实现原理带来的。kbone 是使用一定的性能损耗来换取更为全面的 Web 端特性支持。
+
+所以关于性能方面，如果你对小程序的性能特别苛刻，建议直接使用原生小程序开发；如果你的页面节点数量特别多（通常在 1000 节点以上），同时还要保证在节点数无限上涨时仍然有稳定的渲染性能的话，可以尝试一下业内采用静态模板转译的方案；其他情况就可以直接采用 kbone 了。
